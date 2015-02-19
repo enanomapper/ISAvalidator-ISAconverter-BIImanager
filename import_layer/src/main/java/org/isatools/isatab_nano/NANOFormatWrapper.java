@@ -13,7 +13,8 @@ public class NANOFormatWrapper {
     }
 
     enum NanoHeaders {
-        MATERIAL_FILE("Material File"), MEASUREMENT_VALUE("Measurement Value"), STUDY_DISEASE("Study Disease"),
+        //MATERIAL_FILE("Material File"), 
+        MEASUREMENT_VALUE("Measurement Value"), STUDY_DISEASE("Study Disease"),
         STUDY_DISEASE_SOURCE("Study Disease Term Source REF"), STUDY_DISEASE_ACCESSION("Study Disease Term Accession Number"),
         STUDY_OUTCOME("Study Outcome"), STUDY_FILE_DESCRIPTION("Study File Description"), STUDY_ASSAY_NAME("Study Assay Measurement Name"),
         STUDY_ASSAY_NAME_SOURCE("Study Assay Measurement Name Term Source REF"), STUDY_ASSAY_NAME_ACCESSION("Study Assay Measurement Name Term Accession Number"),

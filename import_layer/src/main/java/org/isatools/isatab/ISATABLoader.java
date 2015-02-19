@@ -159,6 +159,32 @@ public class ISATABLoader extends TabLoader {
     }
 
     /**
+     * Loads the Materials
+     */
+    private void loadMaterials() throws IOException {
+        FormatSetInstance formatSetInstance = getFormatSetInstance();
+        List<SectionInstance> materialInstances = formatSetInstance.getSectionInstances("investigation", "material");
+
+        if (materialInstances.size() == 0) {
+            log.warn("missing_material_file_from_investigation_file");
+            return;
+        }
+
+        for (SectionInstance materialInstance : materialInstances) {
+            String materialFileId = materialInstance.getString(0, "Material File Name");
+            String alreadyLoadedLabel = alreadyLoadedFiles.get(materialFileId);
+            if (alreadyLoadedLabel != null) {
+                throw new TabDuplicatedValueException(i18n.msg(
+                        "material_file_already_exists", materialFileId, alreadyLoadedLabel
+                ));
+            }
+            FormatInstance materialFileInstance = load(materialFileId, "material_samples");
+            formatSetInstance.addFormatInstance(materialFileInstance);
+            alreadyLoadedFiles.put(materialFileId, "as material file");
+        }
+    }
+    
+    /**
      * Loads the studies in the Study blocks of the Investigation files. Moreover, check the reference about
      * the study file made in each "Studies" section and loads the corresponding study_sample files.
      */
@@ -231,6 +257,8 @@ public class ISATABLoader extends TabLoader {
         // Load the Investigation file
         loadInvestigation();
 
+        loadMaterials();
+        
         // Load the studies in Investigation.studyFileName
         loadStudies();
 

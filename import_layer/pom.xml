@@ -45,6 +45,13 @@
             <id>oerc</id>
             <url>http://frog.oerc.ox.ac.uk:8080/nexus-2.1.2/content/groups/oerc</url>
         </repository>
+        
+  <repository>
+      <id>mvnrepository</id>
+      <name>mvnrepository</name>
+      <url>http://mvnrepository.com/</url>
+      
+    </repository>
 
     </repositories>
 
@@ -312,7 +319,16 @@
 
 
     <build>
-
+    
+	<pluginManagement>
+      <plugins>
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-resources-plugin</artifactId>
+          <version>2.4</version>
+        </plugin>
+      </plugins>
+    </pluginManagement>
         <plugins>
 
             <!-- Generates the Java XML mappers for the SRA format -->

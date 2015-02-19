@@ -57,7 +57,12 @@
 
             <field id="Comment" type="typed(string)"/>
         </section>
-
+        
+ 		<section id="material" type="many-in-cols" header="MATERIAL">
+			<field id="Material File Name" cardinality="1-"/>
+			<field id="Material Source Name" cardinality="1-"/>
+            <field id="Comment" type="typed(string)"/>
+        </section>
 
         <!--  __________________________ BEGIN: repeatable Study block ______________________________________ -->
 
@@ -450,6 +455,73 @@
             <field id="Data Transformation Name"/>
 
             <field id="Comment" type="typed(string)"/>
+
+        </section>
+
+    </format>
+
+
+ 	<format id="material_samples" label="Material File">
+
+        <section id="material_samples" type='many-in-rows' header="SAMPLES" is-header-omitted="true"
+                 is-exported-header-omitted="true">
+            <!--
+                           cardinality: allows to specify a mandatory/suggested cardinality. Values
+                           can be number (exact), number+ (min number), number- (max number). Can have the prefix "supposed ", meaning that
+                           it is not mandatory, but a suggestion which of violation should raise a warning instead of an error.
+
+                           follows: allows to specify which headers should/must follow this one. Can be prefixed by "supposed ".
+                           Can be [nothing], meaning it should/must be the first node
+
+                           precedes: similar to follows. The code supports symmetry/transitivity of "follows" and
+                           "precedes", so that order rules can be specified only once.
+
+                           TODO: these restrictions are checked in node fields (e.g.: Source Name or Sample Name) and certain attributes
+                           (e.g.: characteristics). Other fields are checked in the code without restriction specification (e.g.: units,
+                           ontologies). The whole thing is to be tidied up.
+                         -->
+            <field id="Material Source Name" follows="supposed [nothing]"/>
+            <field id="Material Name"/>
+
+            <field id="Material Description"/>
+            
+            <field id="Material Synthesis"/>
+            
+            <field id="Material Type"/>
+            
+            <field id="Term Source REF"/>
+            <field id="Term Accession Number"/>
+            
+            <field id="Material Chemical Name"/>
+            
+            <field id="Term Source REF"/>
+            <field id="Term Accession Number"/>
+
+            <!-- For typed fields the cardinality of every different type is counted, e.g.: Characteristis[component proportion] and
+              Characteristics[Amorphous phase proportion] are 2 different occurrences that count 1 each and independently
+              [Major crystalline phase]
+               [Major crystalline phase proportion]
+                [Minor crystalline phase]
+                [Minor crystalline phase proportion]
+                [Impurities proportion]
+                Characteristics[purity (NPO: http://purl.bioontology.org/ontology/npo#NPO_1345)]
+                Characteristics [Manufacturer {NCIT: http://ncicb.nci.nih.gov/xml/owl/EVS/Thesaurus.owl#C25392}]
+         -->
+            <field id="Characteristics" type="typed(string)" cardinality="supposed 1-"/>
+            <field id="Unit"/>
+            <field id="Term Source REF"/>
+            <field id="Term Accession Number"/>
+ 
+          
+            <field id="Material Constituent"/>
+            <field id="Material Linkage Type"/>
+            <field id="Term Source REF"/>
+            <field id="Term Accession Number"/>
+            
+            <field id="Material Data File"/>
+            <field id="Material Data File Description"/>
+            
+            <field id="Comment" type="String"/>
 
         </section>
 
