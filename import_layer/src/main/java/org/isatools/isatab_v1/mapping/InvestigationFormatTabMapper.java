@@ -63,7 +63,7 @@ public class InvestigationFormatTabMapper extends FormatTabMapper {
         sectionMappersConfig.put("invPubs", InvestigationPublicationTabMapper.class);
         sectionMappersConfig.put("invContacts", InvestigationContactTabMapper.class);
         sectionMappersConfig.put("study", StudyBlockTabMapper.class);
-        sectionMappersConfig.put("material", NMaterialTabMapper.class);
+        sectionMappersConfig.put("material", NMaterialTabMapping.class);
     }
 
     @Override
